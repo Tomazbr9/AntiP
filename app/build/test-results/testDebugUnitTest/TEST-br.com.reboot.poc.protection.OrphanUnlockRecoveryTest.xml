@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.reboot.poc.protection.OrphanUnlockRecoveryTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-06T23:31:07.427Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.011">
+<testsuite name="br.com.reboot.poc.protection.OrphanUnlockRecoveryTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-06T23:53:02.430Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.007">
   <properties/>
-  <testcase name="unknownStateNeverClearsRequest" classname="br.com.reboot.poc.protection.OrphanUnlockRecoveryTest" time="0.006"/>
+  <testcase name="unknownStateNeverClearsRequest" classname="br.com.reboot.poc.protection.OrphanUnlockRecoveryTest" time="0.003"/>
   <testcase name="previousBootRequestCannotMatchNewBootSession" classname="br.com.reboot.poc.protection.OrphanUnlockRecoveryTest" time="0.001"/>
   <testcase name="existingSessionRecordIsPreserved" classname="br.com.reboot.poc.protection.OrphanUnlockRecoveryTest" time="0.001"/>
   <testcase name="confirmedInactiveClearsOrphan" classname="br.com.reboot.poc.protection.OrphanUnlockRecoveryTest" time="0.001"/>

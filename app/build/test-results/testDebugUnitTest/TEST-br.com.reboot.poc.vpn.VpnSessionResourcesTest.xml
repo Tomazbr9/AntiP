@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.reboot.poc.vpn.VpnSessionResourcesTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-06T23:31:07.590Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.006">
+<testsuite name="br.com.reboot.poc.vpn.VpnSessionResourcesTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-06T23:53:02.635Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.015">
   <properties/>
   <testcase name="rejectsSecondReader" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.001"/>
-  <testcase name="readerTerminatesAfterClose" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.001"/>
-  <testcase name="closesOnlyOwnResources" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.001"/>
-  <testcase name="sessionDoesNotCloseOtherSessionsResources" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.0"/>
+  <testcase name="readerTerminatesAfterClose" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.004"/>
+  <testcase name="closesOnlyOwnResources" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.002"/>
+  <testcase name="sessionDoesNotCloseOtherSessionsResources" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.001"/>
   <testcase name="closeIsIdempotent" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.001"/>
-  <testcase name="closesRegisteredResources" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.0"/>
-  <testcase name="retainsSessionIdentity" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.001"/>
+  <testcase name="closesRegisteredResources" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.001"/>
+  <testcase name="retainsSessionIdentity" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.0"/>
   <testcase name="interruptsReaderOnClose" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.001"/>
-  <testcase name="rejectsResourcesAfterClose" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.0"/>
+  <testcase name="rejectsResourcesAfterClose" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

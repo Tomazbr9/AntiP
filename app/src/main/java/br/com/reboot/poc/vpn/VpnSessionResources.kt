@@ -27,6 +27,10 @@ class VpnSessionResources(
     private val stopped = AtomicBoolean(false)
 
     @Volatile
+    var closeStatus = VpnResourceCloseStatus.NOT_STARTED
+        private set
+
+    @Volatile
     private var reader: Thread? = null
 
     fun <T : AutoCloseable> register(resource: T): T {
@@ -51,6 +55,7 @@ class VpnSessionResources(
 
     fun isStopped(): Boolean = stopped.get()
 
+
     override fun close() {
         val threadToInterrupt: Thread?
 
@@ -58,26 +63,30 @@ class VpnSessionResources(
             if (!stopped.compareAndSet(false, true)) {
                 return
             }
+
+            closeStatus = VpnResourceCloseStatus.IN_PROGRESS
             threadToInterrupt = reader
         }
 
-        var closeError: Exception? = null
-
         try {
-            // O scope encerra primeiro os workers DNS,
-            // depois o túnel, conforme a ordem de registro.
+            // Fecha os recursos registrados na scope.
+            // A scope preserva a ordem inversa.
             scope.close()
-        } catch (ex: Exception) {
-            closeError = ex
+
+            closeStatus = VpnResourceCloseStatus.SUCCEEDED
+
+        } catch (ex: Throwable) {
+            // Registrar a falha sem ocultá-la
+            // do RebootDnsVpnService.
+            closeStatus = VpnResourceCloseStatus.FAILED
+            throw ex
+
         } finally {
             if (threadToInterrupt !== Thread.currentThread()) {
                 threadToInterrupt?.interrupt()
             }
         }
-
-        if (closeError != null) throw closeError
     }
-
 
     fun awaitReaderTermination(
         timeoutMillis: Long = 1000L

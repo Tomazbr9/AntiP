@@ -463,6 +463,13 @@ class RebootDnsVpnService : VpnService() {
         try {
             session.close()
 
+            Log.i(
+                TAG,
+                "vpn_resources_closed " +
+                        "id=$sessionId " +
+                        "status=${session.closeStatus}"
+            )
+
             resourceCleanupSucceeded = true
 
             Log.i(
@@ -472,7 +479,9 @@ class RebootDnsVpnService : VpnService() {
         } catch (ex: Exception) {
             Log.e(
                 TAG,
-                "vpn_resource_cleanup_failed id=$sessionId",
+                "vpn_resource_cleanup_failed " +
+                        "id=$sessionId " +
+                        "status=${session.closeStatus}",
                 ex
             )
         }
