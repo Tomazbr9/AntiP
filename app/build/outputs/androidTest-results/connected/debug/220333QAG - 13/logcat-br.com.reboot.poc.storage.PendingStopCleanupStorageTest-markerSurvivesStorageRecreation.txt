@@ -1,0 +1,2 @@
+11-06 20:31:41.415 22643 22660 I TestRunner: started: markerSurvivesStorageRecreation(br.com.reboot.poc.storage.PendingStopCleanupStorageTest)
+11-06 20:31:41.423 22643 22660 I TestRunner: finished: markerSurvivesStorageRecreation(br.com.reboot.poc.storage.PendingStopCleanupStorageTest)

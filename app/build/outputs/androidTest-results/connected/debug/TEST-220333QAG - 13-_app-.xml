@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="br.com.reboot.poc.storage.PendingStopCleanupStorageTest" tests="5" failures="0" errors="0" skipped="0" time="1.864" timestamp="2026-11-06T23:31:42" hostname="localhost">
+  <properties>
+    <property name="device" value="220333QAG - 13" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="clearedMarkerIsNotRestored" classname="br.com.reboot.poc.storage.PendingStopCleanupStorageTest" time="0.011" />
+  <testcase name="markerSurvivesStorageRecreation" classname="br.com.reboot.poc.storage.PendingStopCleanupStorageTest" time="0.0" />
+  <testcase name="unlockActionsAreDistinct" classname="br.com.reboot.poc.vpn.VpnCommandContractTest" time="0.0" />
+  <testcase name="requestIdSurvivesIntentExtras" classname="br.com.reboot.poc.vpn.VpnCommandContractTest" time="0.0" />
+  <testcase name="resultBundlePreservesUnlockStatus" classname="br.com.reboot.poc.vpn.VpnCommandContractTest" time="0.0" />
+</testsuite>

@@ -18,10 +18,11 @@
         android:debuggable="true"
         android:extractNativeLibs="false"
         android:label="Reboot DNS PoC"
+        android:testOnly="true"
         android:theme="@android:style/Theme.Material.Light.NoActionBar"
         android:usesCleartextTraffic="false" >
         <activity
-            android:name="br.com.reboot.poc.presentation.MainActivity"
+            android:name="br.com.reboot.poc.ui.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +32,7 @@
         </activity>
 
         <service
-            android:name="br.com.reboot.poc.infrastructure.vpn.RebootDnsVpnService"
+            android:name="br.com.reboot.poc.vpn.RebootDnsVpnService"
             android:exported="true"
             android:foregroundServiceType="systemExempted"
             android:permission="android.permission.BIND_VPN_SERVICE" >

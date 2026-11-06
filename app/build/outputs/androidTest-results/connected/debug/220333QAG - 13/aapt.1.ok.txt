@@ -1,0 +1,35 @@
+EXECUTING: /home/tomaz/Android/Sdk/build-tools/35.0.0/aapt dump badging /home/tomaz/Downloads/reboot-dns-vpn-poc-android/reboot-poc/app/build/outputs/apk/debug/app-debug.apk
+CURRENT_WORKING_DIRECTORY: /home/tomaz/Downloads/reboot-dns-vpn-poc-android/reboot-poc
+START_TIME: 2026-11-06 20:31:41.233
+START_TIME-NANOS: 2026-11-06 20:31:41.233083615
+ENVIRONMENT:
+
+*****************************************
+STDOUT/STDERR BELOW
+===================
+package: name='br.com.reboot.poc' versionCode='1' versionName='0.1.0' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'
+sdkVersion:'26'
+targetSdkVersion:'35'
+uses-permission: name='android.permission.INTERNET'
+uses-permission: name='android.permission.FOREGROUND_SERVICE'
+uses-permission: name='android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED'
+uses-permission: name='android.permission.REORDER_TASKS'
+application-label:'Reboot DNS PoC'
+application: label='Reboot DNS PoC' icon=''
+application-debuggable
+launchable-activity: name='br.com.reboot.poc.ui.MainActivity'  label='' icon=''
+feature-group: label=''
+  uses-feature: name='android.hardware.faketouch'
+  uses-implied-feature: name='android.hardware.faketouch' reason='default feature for all apps'
+main
+other-activities
+other-services
+supports-screens: 'small' 'normal' 'large' 'xlarge'
+supports-any-density: 'true'
+locales: '--_--'
+densities: '160'
+===================
+END_TIME: 2026-11-06 20:31:41.274
+END_TIME-NANOS: 2026-11-06 20:31:41.274808236
+DURATION: 41ms
+EXIT CODE: 0

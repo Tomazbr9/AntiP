@@ -1,0 +1,2 @@
+11-06 20:31:41.444 22643 22660 I TestRunner: started: requestIdSurvivesIntentExtras(br.com.reboot.poc.vpn.VpnCommandContractTest)
+11-06 20:31:41.446 22643 22660 I TestRunner: finished: requestIdSurvivesIntentExtras(br.com.reboot.poc.vpn.VpnCommandContractTest)
