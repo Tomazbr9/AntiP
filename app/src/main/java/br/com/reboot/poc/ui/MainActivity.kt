@@ -26,6 +26,7 @@ class MainActivity : Activity() {
     private lateinit var confirmButton: Button
     private lateinit var delaySelector: Spinner
 
+    private lateinit var dnsStatus: TextView
     private val responseTracker = UiResponseTracker()
     private val handler = Handler(Looper.getMainLooper())
     private val vpnRequestCode = 42
@@ -60,6 +61,10 @@ class MainActivity : Activity() {
                     return
                 }
 
+                val dnsHealth = resultData?.getString(
+                    Vpn.KEY_DNS_HEALTH
+                ) ?: "UNKNOWN"
+
                 val state = resultData?.getString(
                     Vpn.KEY_STATE
                 ) ?: "ERROR"
@@ -86,7 +91,8 @@ class MainActivity : Activity() {
                     id = id,
                     remaining = remaining,
                     message = message,
-                    operationalState = operationalState
+                    operationalState = operationalState,
+                    dnsHealth = dnsHealth
                 )
             }
         }
@@ -108,6 +114,12 @@ class MainActivity : Activity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        dnsStatus = TextView(this).apply {
+            text = "DNS: não verificado"
+            textSize = 14f
+        }
+
         super.onCreate(savedInstanceState)
 
         status = TextView(this).apply {
@@ -190,6 +202,7 @@ class MainActivity : Activity() {
             setPadding(36, 60, 36, 36)
 
             addView(status)
+            addView(dnsStatus)
             addView(countdown)
             addView(startButton)
             addView(delaySelector)
@@ -226,7 +239,8 @@ class MainActivity : Activity() {
         id: String?,
         remaining: Long,
         message: String,
-        operationalState: String = "UNKNOWN"
+        operationalState: String = "UNKNOWN",
+        dnsHealth: String = "UNKNOWN"
     ) {
 
         // O estado operacional tem prioridade sobre o fluxo de desbloqueio.
@@ -237,8 +251,23 @@ class MainActivity : Activity() {
             operationalState == "INACTIVE" -> "INACTIVE"
             operationalState == "ACTIVE" &&
                     state in setOf("PROTECTED", "WAITING", "READY") -> state
+
             else -> "UNKNOWN"
         }
+
+        dnsStatus.text = if (
+            operationalState != "ACTIVE"
+        ) {
+            "DNS: não verificado"
+        } else {
+            when (dnsHealth) {
+                "HEALTHY" -> "DNS: encaminhamento recente confirmado"
+                "DEGRADED" -> "DNS: falhas detectadas"
+                "IDLE" -> "DNS: aguardando consultas"
+                else -> "DNS: funcionamento não confirmado"
+            }
+        }
+
 
         currentState = effectiveState
 

@@ -4,6 +4,8 @@ import android.util.Log
 import java.io.FileOutputStream
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicLong
+import android.os.SystemClock
+
 
 class DnsRelayDispatcher(
     private val forwarder: DnsUpstreamForwarder,
@@ -25,7 +27,36 @@ class DnsRelayDispatcher(
     private val written = AtomicLong()
     private val failed = AtomicLong()
     private val rejected = AtomicLong()
+    private val consecutiveFailures = AtomicLong()
+    private val lastActivityMillis = AtomicLong(-1L)
+    private val lastSuccessMillis = AtomicLong(-1L)
 
+    fun healthSnapshot(): DnsHealthSnapshot {
+        return DnsHealthSnapshot(
+            received = received.get(),
+            written = written.get(),
+            failed = failed.get(),
+            rejected = rejected.get(),
+            consecutiveFailures = consecutiveFailures.get(),
+            lastActivityMillis = lastActivityMillis.get(),
+            lastSuccessMillis = lastSuccessMillis.get()
+        )
+    }
+    private fun recordFailure() {
+        recordFailure()
+        consecutiveFailures.incrementAndGet()
+        lastActivityMillis.set(SystemClock.elapsedRealtime())
+    }
+
+    private fun recordSuccess() {
+        written.incrementAndGet()
+        consecutiveFailures.set(0L)
+
+        val now = SystemClock.elapsedRealtime()
+
+        lastActivityMillis.set(now)
+        lastSuccessMillis.set(now)
+    }
     fun submit(
         packet: ByteArray,
         length: Int,
@@ -36,7 +67,7 @@ class DnsRelayDispatcher(
         // O leitor TUN reutiliza o buffer.
         // Copia os bytes antes de entregar ao worker.
         if (length <= 0 || length > packet.size) {
-            failed.incrementAndGet()
+            recordFailure()
             return
         }
 
@@ -49,6 +80,7 @@ class DnsRelayDispatcher(
         )
 
         received.incrementAndGet()
+        lastActivityMillis.set(SystemClock.elapsedRealtime())
 
         val accepted = executor.submit {
             if (active.get()) {
@@ -59,13 +91,15 @@ class DnsRelayDispatcher(
         if (!accepted && active.get()) {
             rejected.incrementAndGet()
 
+            consecutiveFailures.incrementAndGet()
+            lastActivityMillis.set(SystemClock.elapsedRealtime())
+
             Log.w(
                 TAG,
                 "dns_relay_queue_full_or_closed"
             )
         }
     }
-
     private fun process(
         request: ByteArray,
         query: DnsQuery
@@ -95,7 +129,7 @@ class DnsRelayDispatcher(
                 )
 
             if (replyPacket == null) {
-                failed.incrementAndGet()
+                recordFailure()
 
                 Log.w(
                     TAG,
@@ -108,7 +142,8 @@ class DnsRelayDispatcher(
                 if (active.get()) {
                     output.write(replyPacket)
 
-                    val total = written.incrementAndGet()
+                    recordSuccess()
+                    val total = written.get()
 
                     Log.i(
                         TAG,
@@ -121,7 +156,7 @@ class DnsRelayDispatcher(
 
         } catch (ex: Exception) {
             if (active.get()) {
-                failed.incrementAndGet()
+                recordFailure()
 
                 Log.w(
                     TAG,

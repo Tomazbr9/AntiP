@@ -15,6 +15,8 @@ import android.os.ResultReceiver
 import android.os.SystemClock
 import android.provider.Settings
 import android.util.Log
+import br.com.reboot.poc.dns.DnsHealthEvaluator
+import br.com.reboot.poc.dns.DnsHealthStatus
 import br.com.reboot.poc.protection.ProtectionRecoveryCoordinator
 import br.com.reboot.poc.protection.ProtectionRecoveryEvaluator
 import br.com.reboot.poc.protection.ProtectionRecoveryResult
@@ -73,10 +75,18 @@ class RebootDnsVpnService : VpnService() {
 
         const val KEY_OPERATIONAL_STATE = "operationalState"
 
+        const val KEY_DNS_HEALTH = "dnsHealth"
+
         private const val CHANNEL = "vpn_poc"
         private const val TAG = "RebootDnsPoc"
 
     }
+
+
+    @Volatile
+    private var currentDnsRelay: DnsRelayDispatcher? = null
+
+    private val dnsHealthEvaluator = DnsHealthEvaluator()
 
     private val sessionGuard = VpnSessionGuard()
     private val mainHandler = Handler(Looper.getMainLooper())
@@ -218,6 +228,8 @@ class RebootDnsVpnService : VpnService() {
             session.register(
                 AutoCloseable { relay.close() }
             )
+
+            currentDnsRelay = relay
 
             val reader = thread(
                 start = false,
@@ -463,6 +475,8 @@ class RebootDnsVpnService : VpnService() {
         // não conseguimos persistir o marcador.
         try {
             session.close()
+
+            currentDnsRelay = null
 
             Log.i(
                 TAG,
@@ -851,6 +865,16 @@ class RebootDnsVpnService : VpnService() {
         stopResult: VpnStopResult? = null
     ) {
 
+        val dnsHealth = currentDnsRelay
+            ?.healthSnapshot()
+            ?.let { snapshot ->
+                dnsHealthEvaluator.evaluate(
+                    snapshot = snapshot,
+                    nowMillis = SystemClock.elapsedRealtime()
+                )
+            } ?: DnsHealthStatus.UNKNOWN
+
+
         val operationalStatus =
             VpnOperationalStatusResolver.resolve(
                 snapshot = snapshotResolver.resolve(currentSession),
@@ -871,6 +895,7 @@ class RebootDnsVpnService : VpnService() {
                     KEY_OPERATIONAL_STATE,
                     operationalStatus.name
                 )
+                putString(KEY_DNS_HEALTH, dnsHealth.name)
                 putLong(
                     KEY_REMAINING_MILLIS,
                     remainingMillis
