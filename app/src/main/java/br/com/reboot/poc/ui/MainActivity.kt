@@ -64,6 +64,10 @@ class MainActivity : Activity() {
                     Vpn.KEY_STATE
                 ) ?: "ERROR"
 
+                val operationalState = resultData?.getString(
+                    Vpn.KEY_OPERATIONAL_STATE
+                ) ?: "UNKNOWN"
+
                 val id = resultData?.getString(
                     Vpn.KEY_REQUEST_ID
                 )
@@ -81,7 +85,8 @@ class MainActivity : Activity() {
                     state = state,
                     id = id,
                     remaining = remaining,
-                    message = message
+                    message = message,
+                    operationalState = operationalState
                 )
             }
         }
@@ -220,42 +225,62 @@ class MainActivity : Activity() {
         state: String,
         id: String?,
         remaining: Long,
-        message: String
+        message: String,
+        operationalState: String = "UNKNOWN"
     ) {
-        currentState = state
-        requestId = id
+
+        // O estado operacional tem prioridade sobre o fluxo de desbloqueio.
+        // Uma resposta contraditória nunca pode habilitar ações de parada.
+        val effectiveState = when {
+            state == "ERROR" || operationalState == "ERROR" -> "ERROR"
+            operationalState == "UNKNOWN" -> "UNKNOWN"
+            operationalState == "INACTIVE" -> "INACTIVE"
+            operationalState == "ACTIVE" &&
+                    state in setOf("PROTECTED", "WAITING", "READY") -> state
+            else -> "UNKNOWN"
+        }
+
+        currentState = effectiveState
+
+        requestId = if (
+            operationalState == "ACTIVE" &&
+            effectiveState in setOf("WAITING", "READY")
+        ) {
+            id
+        } else {
+            null
+        }
 
         handler.removeCallbacks(statusPoll)
 
-        status.text = when (state) {
+        status.text = when (effectiveState) {
             "INACTIVE" -> "Proteção desativada"
             "PROTECTED" -> "Proteção ativa"
             "WAITING" -> "Aguardando liberação"
             "READY" -> "Desativação disponível"
-            "ERROR" -> "Erro: $message"
+            "ERROR" -> "Erro: ${message.ifBlank { "Falha ao consultar a proteção." }}"
             else -> "Verificando proteção..."
         }
 
-        countdown.text = when (state) {
+        countdown.text = when (effectiveState) {
             "WAITING" -> formatRemaining(remaining)
             "READY" -> "Prazo concluído"
             else -> ""
         }
 
-        requestButton.isEnabled = state == "PROTECTED"
-        delaySelector.isEnabled = state == "PROTECTED"
+        requestButton.isEnabled = effectiveState == "PROTECTED"
+        delaySelector.isEnabled = effectiveState == "PROTECTED"
+        cancelButton.isEnabled = effectiveState in setOf("WAITING", "READY")
+        confirmButton.isEnabled = effectiveState == "READY" && requestId != null
 
-        cancelButton.isEnabled =
-            state == "WAITING" || state == "READY"
+        val pollDelay = when (effectiveState) {
+            "WAITING", "READY" -> 1000L
+            "UNKNOWN" -> 5000L
+            else -> null
+        }
 
-        confirmButton.isEnabled = state == "READY"
-
-        if (
-            state == "UNKNOWN" ||
-            state == "WAITING" ||
-            state == "READY"
-        ) {
-            handler.postDelayed(statusPoll, 1000L)
+        if (pollDelay != null) {
+            handler.postDelayed(statusPoll, pollDelay)
         }
     }
 

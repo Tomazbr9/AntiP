@@ -43,7 +43,6 @@ class RebootDnsVpnService : VpnService() {
     companion object {
         const val ACTION_START = "br.com.reboot.poc.START"
         const val ACTION_STOP = "br.com.reboot.poc.STOP"
-
         const val ACTION_REQUEST_UNLOCK =
             "br.com.reboot.poc.REQUEST_UNLOCK"
 
@@ -71,6 +70,8 @@ class RebootDnsVpnService : VpnService() {
         const val KEY_REMAINING_MILLIS = "remainingMillis"
         const val KEY_REQUEST_ID = "requestId"
         const val KEY_MESSAGE = "message"
+
+        const val KEY_OPERATIONAL_STATE = "operationalState"
 
         private const val CHANNEL = "vpn_poc"
         private const val TAG = "RebootDnsPoc"
@@ -471,11 +472,6 @@ class RebootDnsVpnService : VpnService() {
             )
 
             resourceCleanupSucceeded = true
-
-            Log.i(
-                TAG,
-                "vpn_resources_closed id=$sessionId"
-            )
         } catch (ex: Exception) {
             Log.e(
                 TAG,
@@ -761,8 +757,8 @@ class RebootDnsVpnService : VpnService() {
 
             reply(
                 intent,
-                state = "INACTIVE",
-                message = "Nenhuma sessão VPN ativa."
+                state = "UNKNOWN",
+                message = "Não foi possível confirmar uma sessão VPN ativa."
             )
 
             return
@@ -851,8 +847,16 @@ class RebootDnsVpnService : VpnService() {
         state: String,
         message: String = "",
         requestId: String? = null,
-        remainingMillis: Long = 0L
+        remainingMillis: Long = 0L,
+        stopResult: VpnStopResult? = null
     ) {
+
+        val operationalStatus =
+            VpnOperationalStatusResolver.resolve(
+                snapshot = snapshotResolver.resolve(currentSession),
+                stopResult = stopResult
+            )
+
         val receiver = intent.getParcelableExtra<ResultReceiver>(
             EXTRA_RESULT_RECEIVER
         ) ?: return
@@ -863,6 +867,10 @@ class RebootDnsVpnService : VpnService() {
                 putString(KEY_STATE, state)
                 putString(KEY_MESSAGE, message)
                 putString(KEY_REQUEST_ID, requestId)
+                putString(
+                    KEY_OPERATIONAL_STATE,
+                    operationalStatus.name
+                )
                 putLong(
                     KEY_REMAINING_MILLIS,
                     remainingMillis
@@ -877,8 +885,8 @@ class RebootDnsVpnService : VpnService() {
         if (session == null) {
             reply(
                 intent,
-                state = "INACTIVE",
-                message = "Nenhuma sessão VPN ativa."
+                state = "UNKNOWN",
+                message = "Não foi possível confirmar uma sessão VPN ativa."
             )
             return
         }
@@ -917,7 +925,11 @@ class RebootDnsVpnService : VpnService() {
         val session = activeUnlockSession()
 
         if (session == null) {
-            reply(intent, "INACTIVE")
+            reply(
+                intent,
+                state = "UNKNOWN",
+                message = "Não foi possível confirmar uma sessão VPN ativa."
+            )
             return
         }
 
@@ -960,7 +972,11 @@ class RebootDnsVpnService : VpnService() {
         val session = activeUnlockSession()
 
         if (session == null) {
-            reply(intent, "INACTIVE")
+            reply(
+                intent,
+                state = "UNKNOWN",
+                message = "Não foi possível confirmar uma sessão VPN ativa."
+            )
             return
         }
 
@@ -1014,7 +1030,8 @@ class RebootDnsVpnService : VpnService() {
                     reply(
                         intent,
                         state = "INACTIVE",
-                        message = "Proteção desativada."
+                        message = "Encerramento concluído pelo serviço.",
+                        stopResult = stopResult
                     )
                 }
 
@@ -1022,21 +1039,20 @@ class RebootDnsVpnService : VpnService() {
                     reply(
                         intent,
                         state = "ERROR",
-                        message =
-                            "Houve uma falha durante o encerramento. " +
-                                    "Verifique o estado da VPN no Android."
+                        message = "Falha durante o encerramento. " +
+                                "Verifique a VPN nas configurações do Android.",
+                        stopResult = stopResult
                     )
                 }
 
                 VpnStopResult.STALE_SESSION,
                 VpnStopResult.INVALID_STATE -> {
-                    Log.w(
-                        TAG,
-                        "vpn_unlock_stop_not_completed " +
-                                "result=$stopResult"
+                    reply(
+                        intent,
+                        state = "UNKNOWN",
+                        message = "Não foi possível confirmar o encerramento.",
+                        stopResult = stopResult
                     )
-
-                    getUnlockStatus(intent)
                 }
             }
 
@@ -1065,6 +1081,4 @@ class RebootDnsVpnService : VpnService() {
             }
         )
     }
-
-
 }

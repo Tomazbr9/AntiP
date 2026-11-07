@@ -1,2 +1,0 @@
-11-06 20:31:41.426 22643 22660 I TestRunner: started: unlockActionsAreDistinct(br.com.reboot.poc.vpn.VpnCommandContractTest)
-11-06 20:31:41.441 22643 22660 I TestRunner: finished: unlockActionsAreDistinct(br.com.reboot.poc.vpn.VpnCommandContractTest)
