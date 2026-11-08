@@ -28,6 +28,8 @@ import br.com.reboot.poc.unlock.UnlockRequestState
 import br.com.reboot.poc.dns.DnsPacketClassifier
 import br.com.reboot.poc.dns.DnsQueryExtractor
 import br.com.reboot.poc.dns.DnsRelayDispatcher
+import br.com.reboot.poc.dns.DnsTrafficCoverage
+import br.com.reboot.poc.dns.DnsTrafficKind
 import br.com.reboot.poc.dns.DnsUpstreamForwarder
 import br.com.reboot.poc.dns.PacketKind
 import br.com.reboot.poc.storage.ProtectionSessionRecordStorage
@@ -304,6 +306,10 @@ class RebootDnsVpnService : VpnService() {
         var malformed = 0L
         var exitReason = "unknown"
 
+        var tcp53 = 0L
+        var tcp853 = 0L
+        var ipv6Observed = 0L
+
         try {
             while (
                 !session.isStopped() &&
@@ -319,6 +325,15 @@ class RebootDnsVpnService : VpnService() {
                 if (count == 0) continue
 
                 packets++
+
+
+                when (DnsTrafficCoverage.classify(buffer, count)) {
+                    DnsTrafficKind.IPV4_TCP_53 -> tcp53++
+                    DnsTrafficKind.IPV4_TCP_853 -> tcp853++
+                    DnsTrafficKind.IPV6_OBSERVED -> ipv6Observed++
+                    else -> Unit
+                }
+
 
                 when (
                     DnsPacketClassifier.classify(
@@ -386,7 +401,11 @@ class RebootDnsVpnService : VpnService() {
                         "packets=$packets " +
                         "udp53=$udp53 " +
                         "other=$other " +
-                        "malformed=$malformed"
+                        "malformed=$malformed " +
+                        "dns_coverage_summary " +
+                        "tcp53=$tcp53 " +
+                        "tcp853=$tcp853 " +
+                        "ipv6Observed=$ipv6Observed"
             )
 
             // Um leitor antigo só pode solicitar

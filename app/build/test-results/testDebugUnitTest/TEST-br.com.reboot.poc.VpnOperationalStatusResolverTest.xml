@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="br.com.reboot.poc.VpnOperationalStatusResolverTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-08T00:32:37.393Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.015">
+  <properties/>
+  <testcase name="failedStopReturnsError" classname="br.com.reboot.poc.VpnOperationalStatusResolverTest" time="0.009"/>
+  <testcase name="activeSnapshotReturnsActive" classname="br.com.reboot.poc.VpnOperationalStatusResolverTest" time="0.002"/>
+  <testcase name="unknownSnapshotNeverReturnsInactive" classname="br.com.reboot.poc.VpnOperationalStatusResolverTest" time="0.001"/>
+  <testcase name="staleStopDoesNotConfirmInactivity" classname="br.com.reboot.poc.VpnOperationalStatusResolverTest" time="0.001"/>
+  <testcase name="confirmedStopReturnsInactive" classname="br.com.reboot.poc.VpnOperationalStatusResolverTest" time="0.0"/>
+  <testcase name="invalidStopStateDoesNotConfirmInactivity" classname="br.com.reboot.poc.VpnOperationalStatusResolverTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

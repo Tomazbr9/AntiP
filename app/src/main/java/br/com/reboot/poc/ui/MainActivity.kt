@@ -100,27 +100,27 @@ class MainActivity : Activity() {
 
     private val statusPoll = object : Runnable {
         override fun run() {
-
             if (
-                currentState == "UNKNOWN" ||
-                currentState == "WAITING" ||
-                currentState == "READY"
-            ) {
-                sendCommand(
-                    Vpn.ACTION_GET_UNLOCK_STATUS
+                currentState in setOf(
+                    "UNKNOWN",
+                    "PROTECTED",
+                    "WAITING",
+                    "READY"
                 )
+            ) {
+                sendCommand(Vpn.ACTION_GET_UNLOCK_STATUS)
             }
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        super.onCreate(savedInstanceState)
+
         dnsStatus = TextView(this).apply {
             text = "DNS: não verificado"
             textSize = 14f
         }
-
-        super.onCreate(savedInstanceState)
 
         status = TextView(this).apply {
             text = "Consultando proteção..."
@@ -304,7 +304,7 @@ class MainActivity : Activity() {
 
         val pollDelay = when (effectiveState) {
             "WAITING", "READY" -> 1000L
-            "UNKNOWN" -> 5000L
+            "UNKNOWN", "PROTECTED" -> 5000L
             else -> null
         }
 

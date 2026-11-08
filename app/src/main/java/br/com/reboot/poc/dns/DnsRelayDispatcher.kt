@@ -42,11 +42,13 @@ class DnsRelayDispatcher(
             lastSuccessMillis = lastSuccessMillis.get()
         )
     }
+
     private fun recordFailure() {
-        recordFailure()
+        failed.incrementAndGet()
         consecutiveFailures.incrementAndGet()
         lastActivityMillis.set(SystemClock.elapsedRealtime())
     }
+
 
     private fun recordSuccess() {
         written.incrementAndGet()

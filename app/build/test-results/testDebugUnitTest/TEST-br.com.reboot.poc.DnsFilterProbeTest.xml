@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="br.com.reboot.poc.DnsFilterProbeTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-08T00:32:37.306Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.059">
+  <properties/>
+  <testcase name="invalidResponseIsRejected" classname="br.com.reboot.poc.DnsFilterProbeTest" time="0.03"/>
+  <testcase name="aaaaQueryIsIgnored" classname="br.com.reboot.poc.DnsFilterProbeTest" time="0.001"/>
+  <testcase name="unrelatedDomainIsIgnored" classname="br.com.reboot.poc.DnsFilterProbeTest" time="0.001"/>
+  <testcase name="zeroIpv4IsObservedAsBlockResponse" classname="br.com.reboot.poc.DnsFilterProbeTest" time="0.007"/>
+  <testcase name="noIpv4AnswerIsNotConsideredBlocked" classname="br.com.reboot.poc.DnsFilterProbeTest" time="0.001"/>
+  <testcase name="normalIpv4IsNotClassifiedAsBlocked" classname="br.com.reboot.poc.DnsFilterProbeTest" time="0.001"/>
+  <testcase name="nxdomainIsReportedAsDnsError" classname="br.com.reboot.poc.DnsFilterProbeTest" time="0.004"/>
+  <testcase name="mismatchedTransactionIsRejected" classname="br.com.reboot.poc.DnsFilterProbeTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

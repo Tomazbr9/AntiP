@@ -64,11 +64,35 @@ object DnsFilterProbe {
                 qclass == 1
     }
 
+
     fun inspect(
         queryPayload: ByteArray,
         responsePayload: ByteArray
     ): String? {
+        // O diagnóstico só se aplica ao
+        // domínio específico de teste.
         if (!isTestQuery(queryPayload)) return null
+
+        if (queryPayload.size < 12 ||
+            responsePayload.size < 12
+        ) {
+            return "INVALID_RESPONSE"
+        }
+
+        fun transactionId(payload: ByteArray): Int {
+            return (
+                    (payload[0].toInt() and 0xFF) shl 8
+                    ) or (payload[1].toInt() and 0xFF)
+        }
+
+        // Não aceitar uma resposta DNS que pertença
+        // a outra transação.
+        if (
+            transactionId(queryPayload) !=
+            transactionId(responsePayload)
+        ) {
+            return "MISMATCHED_RESPONSE"
+        }
 
         val inspection =
             DnsResponseInspector.inspect(responsePayload)
@@ -79,7 +103,7 @@ object DnsFilterProbe {
                 "DNS_ERROR_${inspection.responseCode}"
 
             inspection.hasZeroIpv4 ->
-                "BLOCK_RESPONSE_CONFIRMED"
+                "BLOCK_RESPONSE_OBSERVED"
 
             inspection.ipv4Answers > 0 ->
                 "NON_ZERO_IPV4_RESPONSE"
@@ -88,4 +112,5 @@ object DnsFilterProbe {
                 "NO_IPV4_ANSWER"
         }
     }
+
 }
