@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.reboot.poc.protection.ProtectionRecoveryEvaluatorTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:10:23.374Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.005">
+<testsuite name="br.com.reboot.poc.protection.ProtectionRecoveryEvaluatorTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:19:09.994Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.004">
   <properties/>
-  <testcase name="matchingActiveSessionIsRecognized" classname="br.com.reboot.poc.protection.ProtectionRecoveryEvaluatorTest" time="0.002"/>
-  <testcase name="unknownStatePreservesUncertainty" classname="br.com.reboot.poc.protection.ProtectionRecoveryEvaluatorTest" time="0.0"/>
-  <testcase name="noSavedSessionReturnsNoRecord" classname="br.com.reboot.poc.protection.ProtectionRecoveryEvaluatorTest" time="0.001"/>
-  <testcase name="previousBootIsRecognizedAfterVerification" classname="br.com.reboot.poc.protection.ProtectionRecoveryEvaluatorTest" time="0.0"/>
+  <testcase name="matchingActiveSessionIsRecognized" classname="br.com.reboot.poc.protection.ProtectionRecoveryEvaluatorTest" time="0.001"/>
+  <testcase name="unknownStatePreservesUncertainty" classname="br.com.reboot.poc.protection.ProtectionRecoveryEvaluatorTest" time="0.001"/>
+  <testcase name="noSavedSessionReturnsNoRecord" classname="br.com.reboot.poc.protection.ProtectionRecoveryEvaluatorTest" time="0.0"/>
+  <testcase name="previousBootIsRecognizedAfterVerification" classname="br.com.reboot.poc.protection.ProtectionRecoveryEvaluatorTest" time="0.001"/>
   <testcase name="differentActiveSessionIsRecognized" classname="br.com.reboot.poc.protection.ProtectionRecoveryEvaluatorTest" time="0.0"/>
   <testcase name="confirmedInactiveSessionIsRecognized" classname="br.com.reboot.poc.protection.ProtectionRecoveryEvaluatorTest" time="0.0"/>
-  <testcase name="unknownStateDoesNotAssumeRebootRecovery" classname="br.com.reboot.poc.protection.ProtectionRecoveryEvaluatorTest" time="0.001"/>
+  <testcase name="unknownStateDoesNotAssumeRebootRecovery" classname="br.com.reboot.poc.protection.ProtectionRecoveryEvaluatorTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

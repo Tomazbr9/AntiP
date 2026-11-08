@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.reboot.poc.DnsHealthEvaluatorTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:10:22.807Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.002">
+<testsuite name="br.com.reboot.poc.DnsHealthEvaluatorTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:19:09.428Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.001">
   <properties/>
   <testcase name="recentSuccessfulWriteReturnsHealthy" classname="br.com.reboot.poc.DnsHealthEvaluatorTest" time="0.0"/>
   <testcase name="repeatedFailuresReturnDegraded" classname="br.com.reboot.poc.DnsHealthEvaluatorTest" time="0.0"/>
-  <testcase name="oldTelemetryReturnsUnknown" classname="br.com.reboot.poc.DnsHealthEvaluatorTest" time="0.001"/>
+  <testcase name="oldTelemetryReturnsUnknown" classname="br.com.reboot.poc.DnsHealthEvaluatorTest" time="0.0"/>
   <testcase name="clockMismatchReturnsUnknown" classname="br.com.reboot.poc.DnsHealthEvaluatorTest" time="0.0"/>
   <testcase name="noTrafficReturnsIdle" classname="br.com.reboot.poc.DnsHealthEvaluatorTest" time="0.0"/>
   <testcase name="successfulWriteResetsFailureState" classname="br.com.reboot.poc.DnsHealthEvaluatorTest" time="0.0"/>

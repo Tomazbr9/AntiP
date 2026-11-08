@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.reboot.poc.unlock.UnlockStopAuthorizationTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:10:23.420Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.002">
+<testsuite name="br.com.reboot.poc.unlock.UnlockStopAuthorizationTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:19:10.045Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.003">
   <properties/>
   <testcase name="previousBootCannotAuthorizeStop" classname="br.com.reboot.poc.unlock.UnlockStopAuthorizationTest" time="0.001"/>
-  <testcase name="wrongRequestIdCannotStopVpn" classname="br.com.reboot.poc.unlock.UnlockStopAuthorizationTest" time="0.001"/>
+  <testcase name="wrongRequestIdCannotStopVpn" classname="br.com.reboot.poc.unlock.UnlockStopAuthorizationTest" time="0.0"/>
   <testcase name="cancelledRequestCannotAuthorizeStop" classname="br.com.reboot.poc.unlock.UnlockStopAuthorizationTest" time="0.0"/>
   <testcase name="inactiveVpnCannotBeAuthorized" classname="br.com.reboot.poc.unlock.UnlockStopAuthorizationTest" time="0.0"/>
   <testcase name="oldSessionCannotStopNewSession" classname="br.com.reboot.poc.unlock.UnlockStopAuthorizationTest" time="0.0"/>
   <testcase name="readyRequestCanAuthorizeConfirmation" classname="br.com.reboot.poc.unlock.UnlockStopAuthorizationTest" time="0.0"/>
-  <testcase name="deadlineDoesNotAutomaticallyDeleteRequest" classname="br.com.reboot.poc.unlock.UnlockStopAuthorizationTest" time="0.0"/>
+  <testcase name="deadlineDoesNotAutomaticallyDeleteRequest" classname="br.com.reboot.poc.unlock.UnlockStopAuthorizationTest" time="0.001"/>
   <testcase name="waitingRequestCannotStopVpn" classname="br.com.reboot.poc.unlock.UnlockStopAuthorizationTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

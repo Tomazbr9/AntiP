@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.reboot.poc.protection.ProtectionSessionReconcilerTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:10:23.382Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.004">
+<testsuite name="br.com.reboot.poc.protection.ProtectionSessionReconcilerTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:19:10.006Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.004">
   <properties/>
-  <testcase name="doesNotDeleteOtherSessionsUnlock" classname="br.com.reboot.poc.protection.ProtectionSessionReconcilerTest" time="0.0"/>
-  <testcase name="deviceRebootInvalidatesOldRecord" classname="br.com.reboot.poc.protection.ProtectionSessionReconcilerTest" time="0.001"/>
-  <testcase name="unknownStateAfterBootChangeDoesNotClearRecords" classname="br.com.reboot.poc.protection.ProtectionSessionReconcilerTest" time="0.0"/>
+  <testcase name="doesNotDeleteOtherSessionsUnlock" classname="br.com.reboot.poc.protection.ProtectionSessionReconcilerTest" time="0.001"/>
+  <testcase name="deviceRebootInvalidatesOldRecord" classname="br.com.reboot.poc.protection.ProtectionSessionReconcilerTest" time="0.0"/>
+  <testcase name="unknownStateAfterBootChangeDoesNotClearRecords" classname="br.com.reboot.poc.protection.ProtectionSessionReconcilerTest" time="0.001"/>
   <testcase name="confirmedInactiveClearsOldRecord" classname="br.com.reboot.poc.protection.ProtectionSessionReconcilerTest" time="0.001"/>
   <testcase name="matchingActiveSessionPreservesRecords" classname="br.com.reboot.poc.protection.ProtectionSessionReconcilerTest" time="0.0"/>
   <testcase name="returnsNoRecordWhenStorageIsEmpty" classname="br.com.reboot.poc.protection.ProtectionSessionReconcilerTest" time="0.0"/>

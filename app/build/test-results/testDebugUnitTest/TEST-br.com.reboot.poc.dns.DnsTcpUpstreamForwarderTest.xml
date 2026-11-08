@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.reboot.poc.dns.DnsTcpUpstreamForwarderTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:10:22.887Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.413">
+<testsuite name="br.com.reboot.poc.dns.DnsTcpUpstreamForwarderTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:19:09.527Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.41">
   <properties/>
   <testcase name="closedForwarderRejectsNewQueries" classname="br.com.reboot.poc.dns.DnsTcpUpstreamForwarderTest" time="0.002"/>
-  <testcase name="forwardsQueryAndReceivesResponse" classname="br.com.reboot.poc.dns.DnsTcpUpstreamForwarderTest" time="0.006"/>
-  <testcase name="rejectsSocketWhenProtectionFails" classname="br.com.reboot.poc.dns.DnsTcpUpstreamForwarderTest" time="0.002"/>
-  <testcase name="readTimeoutIsPropagated" classname="br.com.reboot.poc.dns.DnsTcpUpstreamForwarderTest" time="0.402"/>
+  <testcase name="forwardsQueryAndReceivesResponse" classname="br.com.reboot.poc.dns.DnsTcpUpstreamForwarderTest" time="0.004"/>
+  <testcase name="rejectsSocketWhenProtectionFails" classname="br.com.reboot.poc.dns.DnsTcpUpstreamForwarderTest" time="0.001"/>
+  <testcase name="readTimeoutIsPropagated" classname="br.com.reboot.poc.dns.DnsTcpUpstreamForwarderTest" time="0.403"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

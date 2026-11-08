@@ -1,4 +1,3 @@
-
 package br.com.reboot.poc.dns
 
 import org.junit.Assert.*
@@ -13,51 +12,70 @@ class DnsResponseSelectionCoordinatorTest {
         value.toByte()
     )
 
-    private fun query(ednsSize: Int? = null): ByteArray {
+    private fun query(): ByteArray {
         val out = ByteArrayOutputStream()
 
         out.write(u16(0x1234))
-        out.write(byteArrayOf(0x01, 0x00))
+        out.write(u16(0x0100))
         out.write(u16(1))
         out.write(u16(0))
         out.write(u16(0))
-        out.write(u16(if (ednsSize == null) 0 else 1))
+        out.write(u16(0))
 
+        // example.org
         out.write(7)
         out.write("example".toByteArray())
         out.write(3)
         out.write("org".toByteArray())
         out.write(0)
-        out.write(u16(1))
-        out.write(u16(1))
 
-        if (ednsSize != null) {
-            out.write(0)
-            out.write(u16(41))
-            out.write(u16(ednsSize))
-            out.write(byteArrayOf(0, 0, 0, 0))
-            out.write(u16(0))
-        }
+        out.write(u16(1)) // A
+        out.write(u16(1)) // IN
 
         return out.toByteArray()
     }
 
     private fun response(
-        size: Int = 100,
-        truncated: Boolean = false
-    ): ByteArray = ByteArray(size).apply {
-        this[0] = 0x12
-        this[1] = 0x34
-        this[2] = if (truncated) {
-            0x83.toByte()
-        } else {
-            0x81.toByte()
+        truncated: Boolean = false,
+        withAnswer: Boolean = false
+    ): ByteArray {
+        val out = ByteArrayOutputStream()
+
+        out.write(u16(0x1234))
+        out.write(
+            u16(if (truncated) 0x8380 else 0x8180)
+        )
+        out.write(u16(1))
+        out.write(u16(if (withAnswer) 1 else 0))
+        out.write(u16(0))
+        out.write(u16(0))
+
+        // Copia a pergunta original.
+        val question = query()
+        out.write(
+            question,
+            12,
+            question.size - 12
+        )
+
+        if (withAnswer) {
+            // Ponteiro para example.org.
+            out.write(byteArrayOf(
+                0xC0.toByte(), 0x0C
+            ))
+
+            out.write(u16(1)) // A
+            out.write(u16(1)) // IN
+            out.write(byteArrayOf(0, 0, 0, 60))
+            out.write(u16(4))
+            out.write(byteArrayOf(1, 2, 3, 4))
         }
-        this[3] = 0x80.toByte()
+
+        return out.toByteArray()
     }
 
     @Test
-    fun normalUdpResponseIsAcceptedWithoutTcp() {
+    fun validUdpResponseIsAcceptedWithoutTcp() {
         var tcpCalls = 0
 
         val selector = DnsResponseSelectionCoordinator {
@@ -67,7 +85,7 @@ class DnsResponseSelectionCoordinatorTest {
 
         val result = selector.select(
             query(),
-            response()
+            response(withAnswer = true)
         )
 
         assertTrue(result is DnsFallbackResult.UdpAccepted)
@@ -75,12 +93,12 @@ class DnsResponseSelectionCoordinatorTest {
     }
 
     @Test
-    fun truncatedUdpTriggersTcp() {
+    fun truncatedUdpTriggersTcpFallback() {
         var tcpCalls = 0
 
         val selector = DnsResponseSelectionCoordinator {
             tcpCalls++
-            response(size = 400)
+            response(withAnswer = true)
         }
 
         val result = selector.select(
@@ -93,55 +111,7 @@ class DnsResponseSelectionCoordinatorTest {
     }
 
     @Test
-    fun tcpCannotExceedLegacyUdpLimit() {
-        val selector = DnsResponseSelectionCoordinator {
-            response(size = 900)
-        }
-
-        val result = selector.select(
-            query(),
-            response(truncated = true)
-        )
-
-        assertEquals(
-            DnsFallbackResult.ResponseTooLarge,
-            result
-        )
-    }
-
-    @Test
-    fun ednsAllowsLargerTcpResponse() {
-        val selector = DnsResponseSelectionCoordinator {
-            response(size = 900)
-        }
-
-        val result = selector.select(
-            query(ednsSize = 1232),
-            response(truncated = true)
-        )
-
-        assertTrue(result is DnsFallbackResult.TcpAccepted)
-    }
-
-    @Test
-    fun responseCannotExceedTunMtu() {
-        val selector = DnsResponseSelectionCoordinator {
-            response(size = 1500)
-        }
-
-        val result = selector.select(
-            query(ednsSize = 4096),
-            response(truncated = true)
-        )
-
-        assertEquals(
-            DnsFallbackResult.ResponseTooLarge,
-            result
-        )
-    }
-
-    @Test
-    fun invalidUdpResponseIsRejectedWithoutTcp() {
+    fun invalidCompleteUdpResponseIsRejected() {
         var tcpCalls = 0
 
         val selector = DnsResponseSelectionCoordinator {
@@ -149,9 +119,13 @@ class DnsResponseSelectionCoordinatorTest {
             response()
         }
 
+        val invalid = response().copyOf().apply {
+            this[12] = 0x7F.toByte()
+        }
+
         val result = selector.select(
             query(),
-            byteArrayOf(1, 2, 3)
+            invalid
         )
 
         assertEquals(
@@ -159,6 +133,25 @@ class DnsResponseSelectionCoordinatorTest {
             result
         )
         assertEquals(0, tcpCalls)
+    }
+
+    @Test
+    fun invalidTcpResponseIsRejected() {
+        val selector = DnsResponseSelectionCoordinator {
+            response(withAnswer = true).copyOf().apply {
+                // Adicionar bytes inesperados.
+            } + byteArrayOf(1, 2)
+        }
+
+        val result = selector.select(
+            query(),
+            response(truncated = true)
+        )
+
+        assertEquals(
+            DnsFallbackResult.InvalidTcpResponse,
+            result
+        )
     }
 
     @Test
@@ -179,19 +172,40 @@ class DnsResponseSelectionCoordinatorTest {
     }
 
     @Test
-    fun truncatedTcpResponseIsRejected() {
+    fun mismatchedTruncatedHeaderDoesNotCallTcp() {
+        var tcpCalls = 0
+
+        val selector = DnsResponseSelectionCoordinator {
+            tcpCalls++
+            response()
+        }
+
+        val invalid = response(
+            truncated = true
+        ).copyOf().apply {
+            this[0] = 0x55
+        }
+
+        assertEquals(
+            DnsFallbackResult.InvalidUdpResponse,
+            selector.select(query(), invalid)
+        )
+
+        assertEquals(0, tcpCalls)
+    }
+
+    @Test
+    fun tcpResponseWithTruncationIsRejected() {
         val selector = DnsResponseSelectionCoordinator {
             response(truncated = true)
         }
 
-        val result = selector.select(
-            query(),
-            response(truncated = true)
-        )
-
         assertEquals(
             DnsFallbackResult.InvalidTcpResponse,
-            result
+            selector.select(
+                query(),
+                response(truncated = true)
+            )
         )
     }
 }
