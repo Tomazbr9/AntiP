@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.reboot.poc.vpn.VpnSessionCloseStatusTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-08T00:46:27.584Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.005">
+<testsuite name="br.com.reboot.poc.vpn.VpnSessionCloseStatusTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:10:23.435Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.004">
   <properties/>
   <testcase name="successfulCloseUpdatesStatus" classname="br.com.reboot.poc.vpn.VpnSessionCloseStatusTest" time="0.001"/>
-  <testcase name="everyResourceIsAttemptedAfterFailure" classname="br.com.reboot.poc.vpn.VpnSessionCloseStatusTest" time="0.002"/>
-  <testcase name="repeatedCloseDoesNotCloseResourcesTwice" classname="br.com.reboot.poc.vpn.VpnSessionCloseStatusTest" time="0.0"/>
+  <testcase name="everyResourceIsAttemptedAfterFailure" classname="br.com.reboot.poc.vpn.VpnSessionCloseStatusTest" time="0.001"/>
+  <testcase name="repeatedCloseDoesNotCloseResourcesTwice" classname="br.com.reboot.poc.vpn.VpnSessionCloseStatusTest" time="0.001"/>
   <testcase name="emptySessionCanBeClosed" classname="br.com.reboot.poc.vpn.VpnSessionCloseStatusTest" time="0.0"/>
   <testcase name="initialStatusIsNotStarted" classname="br.com.reboot.poc.vpn.VpnSessionCloseStatusTest" time="0.0"/>
   <testcase name="failedCloseUpdatesStatus" classname="br.com.reboot.poc.vpn.VpnSessionCloseStatusTest" time="0.001"/>

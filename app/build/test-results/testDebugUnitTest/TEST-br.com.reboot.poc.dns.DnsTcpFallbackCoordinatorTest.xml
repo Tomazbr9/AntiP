@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="br.com.reboot.poc.dns.DnsTcpFallbackCoordinatorTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:10:22.864Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.004">
+  <properties/>
+  <testcase name="tcpFailureIsReported" classname="br.com.reboot.poc.dns.DnsTcpFallbackCoordinatorTest" time="0.001"/>
+  <testcase name="oversizedUdpResponseIsRejected" classname="br.com.reboot.poc.dns.DnsTcpFallbackCoordinatorTest" time="0.0"/>
+  <testcase name="oversizedTcpResponseIsRejected" classname="br.com.reboot.poc.dns.DnsTcpFallbackCoordinatorTest" time="0.001"/>
+  <testcase name="invalidUdpResponseDoesNotCallTcp" classname="br.com.reboot.poc.dns.DnsTcpFallbackCoordinatorTest" time="0.0"/>
+  <testcase name="normalUdpResponseDoesNotCallTcp" classname="br.com.reboot.poc.dns.DnsTcpFallbackCoordinatorTest" time="0.001"/>
+  <testcase name="mismatchedTcpResponseIsRejected" classname="br.com.reboot.poc.dns.DnsTcpFallbackCoordinatorTest" time="0.0"/>
+  <testcase name="truncatedTcpResponseIsRejected" classname="br.com.reboot.poc.dns.DnsTcpFallbackCoordinatorTest" time="0.001"/>
+  <testcase name="truncatedUdpTriggersTcpFallback" classname="br.com.reboot.poc.dns.DnsTcpFallbackCoordinatorTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

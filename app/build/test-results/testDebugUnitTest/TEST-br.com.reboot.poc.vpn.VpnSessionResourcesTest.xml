@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.reboot.poc.vpn.VpnSessionResourcesTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-08T00:46:27.597Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.009">
+<testsuite name="br.com.reboot.poc.vpn.VpnSessionResourcesTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:10:23.445Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.007">
   <properties/>
   <testcase name="rejectsSecondReader" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.001"/>
-  <testcase name="readerTerminatesAfterClose" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.001"/>
+  <testcase name="readerTerminatesAfterClose" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.0"/>
   <testcase name="closesOnlyOwnResources" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.001"/>
   <testcase name="sessionDoesNotCloseOtherSessionsResources" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.001"/>
   <testcase name="closeIsIdempotent" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.0"/>
   <testcase name="closesRegisteredResources" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.001"/>
-  <testcase name="retainsSessionIdentity" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.0"/>
-  <testcase name="interruptsReaderOnClose" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.001"/>
-  <testcase name="rejectsResourcesAfterClose" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.002"/>
+  <testcase name="retainsSessionIdentity" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.001"/>
+  <testcase name="interruptsReaderOnClose" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.002"/>
+  <testcase name="rejectsResourcesAfterClose" classname="br.com.reboot.poc.vpn.VpnSessionResourcesTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

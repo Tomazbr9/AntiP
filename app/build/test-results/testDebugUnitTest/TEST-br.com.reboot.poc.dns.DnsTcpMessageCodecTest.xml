@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.reboot.poc.dns.DnsTcpMessageCodecTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-08T00:46:27.035Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.003">
+<testsuite name="br.com.reboot.poc.dns.DnsTcpMessageCodecTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:10:22.872Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.007">
   <properties/>
-  <testcase name="rejectsIncompleteFrame" classname="br.com.reboot.poc.dns.DnsTcpMessageCodecTest" time="0.0"/>
+  <testcase name="rejectsIncompleteFrame" classname="br.com.reboot.poc.dns.DnsTcpMessageCodecTest" time="0.001"/>
   <testcase name="rejectsDnsMessageSmallerThanHeader" classname="br.com.reboot.poc.dns.DnsTcpMessageCodecTest" time="0.0"/>
-  <testcase name="rejectsTrailingBytes" classname="br.com.reboot.poc.dns.DnsTcpMessageCodecTest" time="0.0"/>
+  <testcase name="rejectsTrailingBytes" classname="br.com.reboot.poc.dns.DnsTcpMessageCodecTest" time="0.001"/>
   <testcase name="encodeAddsTwoByteLengthPrefix" classname="br.com.reboot.poc.dns.DnsTcpMessageCodecTest" time="0.0"/>
-  <testcase name="acceptsMaximumDnsMessageSize" classname="br.com.reboot.poc.dns.DnsTcpMessageCodecTest" time="0.0"/>
-  <testcase name="supportsMessagesLargerThan255Bytes" classname="br.com.reboot.poc.dns.DnsTcpMessageCodecTest" time="0.0"/>
+  <testcase name="acceptsMaximumDnsMessageSize" classname="br.com.reboot.poc.dns.DnsTcpMessageCodecTest" time="0.004"/>
+  <testcase name="supportsMessagesLargerThan255Bytes" classname="br.com.reboot.poc.dns.DnsTcpMessageCodecTest" time="0.001"/>
   <testcase name="decodeRestoresOriginalMessage" classname="br.com.reboot.poc.dns.DnsTcpMessageCodecTest" time="0.0"/>
-  <testcase name="rejectsOversizedDnsMessage" classname="br.com.reboot.poc.dns.DnsTcpMessageCodecTest" time="0.001"/>
+  <testcase name="rejectsOversizedDnsMessage" classname="br.com.reboot.poc.dns.DnsTcpMessageCodecTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

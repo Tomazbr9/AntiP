@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.reboot.poc.DnsTrafficCoverageTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-08T00:46:26.987Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.002">
+<testsuite name="br.com.reboot.poc.DnsTrafficCoverageTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:10:22.811Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.001">
   <properties/>
   <testcase name="otherTrafficIsNotDns" classname="br.com.reboot.poc.DnsTrafficCoverageTest" time="0.0"/>
-  <testcase name="malformedPacketIsRejected" classname="br.com.reboot.poc.DnsTrafficCoverageTest" time="0.001"/>
+  <testcase name="malformedPacketIsRejected" classname="br.com.reboot.poc.DnsTrafficCoverageTest" time="0.0"/>
   <testcase name="identifiesTcp853" classname="br.com.reboot.poc.DnsTrafficCoverageTest" time="0.0"/>
   <testcase name="identifiesTcpDns" classname="br.com.reboot.poc.DnsTrafficCoverageTest" time="0.0"/>
   <testcase name="identifiesUdpDns" classname="br.com.reboot.poc.DnsTrafficCoverageTest" time="0.0"/>

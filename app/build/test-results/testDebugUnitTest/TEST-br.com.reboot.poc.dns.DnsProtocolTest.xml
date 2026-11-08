@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.reboot.poc.dns.DnsProtocolTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-08T00:46:26.998Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.011">
+<testsuite name="br.com.reboot.poc.dns.DnsProtocolTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:10:22.820Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.009">
   <properties/>
-  <testcase name="rejectsResponseWithDifferentTransactionId" classname="br.com.reboot.poc.dns.DnsProtocolTest" time="0.009"/>
+  <testcase name="rejectsResponseWithDifferentTransactionId" classname="br.com.reboot.poc.dns.DnsProtocolTest" time="0.007"/>
   <testcase name="rejectsOversizedResponse" classname="br.com.reboot.poc.dns.DnsProtocolTest" time="0.0"/>
-  <testcase name="classifiesUdpDnsPacket" classname="br.com.reboot.poc.dns.DnsProtocolTest" time="0.0"/>
-  <testcase name="rejectsIncompleteIpv4Packet" classname="br.com.reboot.poc.dns.DnsProtocolTest" time="0.001"/>
+  <testcase name="classifiesUdpDnsPacket" classname="br.com.reboot.poc.dns.DnsProtocolTest" time="0.001"/>
+  <testcase name="rejectsIncompleteIpv4Packet" classname="br.com.reboot.poc.dns.DnsProtocolTest" time="0.0"/>
   <testcase name="extractsDnsQueryAndSourcePort" classname="br.com.reboot.poc.dns.DnsProtocolTest" time="0.001"/>
   <testcase name="identifiesNonDnsUdpTraffic" classname="br.com.reboot.poc.dns.DnsProtocolTest" time="0.0"/>
   <testcase name="buildsValidIpv4AndUdpChecksums" classname="br.com.reboot.poc.dns.DnsProtocolTest" time="0.0"/>
