@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.reboot.poc.dns.DnsUdpPayloadPolicyTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:19:09.941Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.004">
+<testsuite name="br.com.reboot.poc.dns.DnsUdpPayloadPolicyTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-08T23:06:50.494Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.004">
   <properties/>
   <testcase name="invalidResponseIsRejected" classname="br.com.reboot.poc.dns.DnsUdpPayloadPolicyTest" time="0.001"/>
   <testcase name="legacyOversizedResponseIsRejected" classname="br.com.reboot.poc.dns.DnsUdpPayloadPolicyTest" time="0.0"/>

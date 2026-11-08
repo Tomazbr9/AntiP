@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="br.com.reboot.poc.dns.DnsFallbackIntegrationTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-08T23:06:49.948Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.013">
+  <properties/>
+  <testcase name="brokenTcpStreamReportsFailure" classname="br.com.reboot.poc.dns.DnsFallbackIntegrationTest" time="0.003"/>
+  <testcase name="malformedResourceRecordIsRejected" classname="br.com.reboot.poc.dns.DnsFallbackIntegrationTest" time="0.001"/>
+  <testcase name="truncatedUdpUsesTcpExchange" classname="br.com.reboot.poc.dns.DnsFallbackIntegrationTest" time="0.002"/>
+  <testcase name="mtuLimitRejectsOversizedTcpResponse" classname="br.com.reboot.poc.dns.DnsFallbackIntegrationTest" time="0.001"/>
+  <testcase name="legacyClientRejectsLargeTcpResponse" classname="br.com.reboot.poc.dns.DnsFallbackIntegrationTest" time="0.001"/>
+  <testcase name="wrongTransactionIdIsRejected" classname="br.com.reboot.poc.dns.DnsFallbackIntegrationTest" time="0.001"/>
+  <testcase name="mismatchedQuestionIsRejected" classname="br.com.reboot.poc.dns.DnsFallbackIntegrationTest" time="0.001"/>
+  <testcase name="validUdpDoesNotUseTcp" classname="br.com.reboot.poc.dns.DnsFallbackIntegrationTest" time="0.001"/>
+  <testcase name="ednsClientAcceptsLargerTcpResponse" classname="br.com.reboot.poc.dns.DnsFallbackIntegrationTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

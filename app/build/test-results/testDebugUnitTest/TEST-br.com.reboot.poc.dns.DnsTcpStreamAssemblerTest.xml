@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.reboot.poc.dns.DnsTcpStreamAssemblerTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:19:09.519Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.006">
+<testsuite name="br.com.reboot.poc.dns.DnsTcpStreamAssemblerTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-08T23:06:50.072Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.004">
   <properties/>
-  <testcase name="multipleMessagesInOneChunk" classname="br.com.reboot.poc.dns.DnsTcpStreamAssemblerTest" time="0.0"/>
+  <testcase name="multipleMessagesInOneChunk" classname="br.com.reboot.poc.dns.DnsTcpStreamAssemblerTest" time="0.001"/>
   <testcase name="maximumSizeMessageIsSupported" classname="br.com.reboot.poc.dns.DnsTcpStreamAssemblerTest" time="0.0"/>
-  <testcase name="fragmentedMessageIsReassembled" classname="br.com.reboot.poc.dns.DnsTcpStreamAssemblerTest" time="0.001"/>
+  <testcase name="fragmentedMessageIsReassembled" classname="br.com.reboot.poc.dns.DnsTcpStreamAssemblerTest" time="0.0"/>
   <testcase name="completeMessageIsReturned" classname="br.com.reboot.poc.dns.DnsTcpStreamAssemblerTest" time="0.0"/>
   <testcase name="invalidLengthRejectsAssembler" classname="br.com.reboot.poc.dns.DnsTcpStreamAssemblerTest" time="0.001"/>
   <testcase name="completeMessageAndPartialNextMessage" classname="br.com.reboot.poc.dns.DnsTcpStreamAssemblerTest" time="0.0"/>
   <testcase name="customMaximumIsEnforced" classname="br.com.reboot.poc.dns.DnsTcpStreamAssemblerTest" time="0.001"/>
-  <testcase name="invalidInputRangeIsRejected" classname="br.com.reboot.poc.dns.DnsTcpStreamAssemblerTest" time="0.001"/>
+  <testcase name="invalidInputRangeIsRejected" classname="br.com.reboot.poc.dns.DnsTcpStreamAssemblerTest" time="0.0"/>
   <testcase name="emptyInputReturnsNoMessages" classname="br.com.reboot.poc.dns.DnsTcpStreamAssemblerTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

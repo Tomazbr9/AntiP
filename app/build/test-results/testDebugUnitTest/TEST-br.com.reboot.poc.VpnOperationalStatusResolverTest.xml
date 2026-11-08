@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.reboot.poc.VpnOperationalStatusResolverTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:19:09.434Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.003">
+<testsuite name="br.com.reboot.poc.VpnOperationalStatusResolverTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-08T23:06:49.903Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.006">
   <properties/>
-  <testcase name="failedStopReturnsError" classname="br.com.reboot.poc.VpnOperationalStatusResolverTest" time="0.002"/>
-  <testcase name="activeSnapshotReturnsActive" classname="br.com.reboot.poc.VpnOperationalStatusResolverTest" time="0.0"/>
+  <testcase name="failedStopReturnsError" classname="br.com.reboot.poc.VpnOperationalStatusResolverTest" time="0.003"/>
+  <testcase name="activeSnapshotReturnsActive" classname="br.com.reboot.poc.VpnOperationalStatusResolverTest" time="0.001"/>
   <testcase name="unknownSnapshotNeverReturnsInactive" classname="br.com.reboot.poc.VpnOperationalStatusResolverTest" time="0.001"/>
   <testcase name="staleStopDoesNotConfirmInactivity" classname="br.com.reboot.poc.VpnOperationalStatusResolverTest" time="0.0"/>
   <testcase name="confirmedStopReturnsInactive" classname="br.com.reboot.poc.VpnOperationalStatusResolverTest" time="0.0"/>

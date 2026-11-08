@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="br.com.reboot.poc.dns.DnsResponsePacketBuilderTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2026-11-08T23:06:49.990Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.004">
+  <properties/>
+  <testcase name="handlesOddLengthDnsPayload" classname="br.com.reboot.poc.dns.DnsResponsePacketBuilderTest" time="0.001"/>
+  <testcase name="buildsValidIpv4HeaderChecksum" classname="br.com.reboot.poc.dns.DnsResponsePacketBuilderTest" time="0.0"/>
+  <testcase name="rejectsPayloadBeyondMtu" classname="br.com.reboot.poc.dns.DnsResponsePacketBuilderTest" time="0.0"/>
+  <testcase name="rejectsDnsQueryAsResponse" classname="br.com.reboot.poc.dns.DnsResponsePacketBuilderTest" time="0.0"/>
+  <testcase name="rejectsFragmentedIpv4Request" classname="br.com.reboot.poc.dns.DnsResponsePacketBuilderTest" time="0.0"/>
+  <testcase name="rejectsMalformedRequestLength" classname="br.com.reboot.poc.dns.DnsResponsePacketBuilderTest" time="0.0"/>
+  <testcase name="reversesIpv4Addresses" classname="br.com.reboot.poc.dns.DnsResponsePacketBuilderTest" time="0.0"/>
+  <testcase name="writesCorrectPacketLengths" classname="br.com.reboot.poc.dns.DnsResponsePacketBuilderTest" time="0.001"/>
+  <testcase name="preservesDnsResponseBytes" classname="br.com.reboot.poc.dns.DnsResponsePacketBuilderTest" time="0.0"/>
+  <testcase name="rejectsWrongDestinationPort" classname="br.com.reboot.poc.dns.DnsResponsePacketBuilderTest" time="0.0"/>
+  <testcase name="buildsValidUdpChecksum" classname="br.com.reboot.poc.dns.DnsResponsePacketBuilderTest" time="0.0"/>
+  <testcase name="acceptsMaximumMtu" classname="br.com.reboot.poc.dns.DnsResponsePacketBuilderTest" time="0.001"/>
+  <testcase name="rejectsMismatchedDnsTransactionId" classname="br.com.reboot.poc.dns.DnsResponsePacketBuilderTest" time="0.0"/>
+  <testcase name="reversesUdpPorts" classname="br.com.reboot.poc.dns.DnsResponsePacketBuilderTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

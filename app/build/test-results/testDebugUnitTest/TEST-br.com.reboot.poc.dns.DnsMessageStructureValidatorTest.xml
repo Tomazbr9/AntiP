@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.reboot.poc.dns.DnsMessageStructureValidatorTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-08T01:19:09.440Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.012">
+<testsuite name="br.com.reboot.poc.dns.DnsMessageStructureValidatorTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-08T23:06:49.964Z" hostname="tomaz-IdeaPad-3-15ITL6" time="0.004">
   <properties/>
-  <testcase name="validResponseWithoutAnswers" classname="br.com.reboot.poc.dns.DnsMessageStructureValidatorTest" time="0.002"/>
-  <testcase name="validCompressedAnswer" classname="br.com.reboot.poc.dns.DnsMessageStructureValidatorTest" time="0.001"/>
-  <testcase name="differentLetterCaseIsAccepted" classname="br.com.reboot.poc.dns.DnsMessageStructureValidatorTest" time="0.0"/>
-  <testcase name="trailingBytesAreRejected" classname="br.com.reboot.poc.dns.DnsMessageStructureValidatorTest" time="0.007"/>
+  <testcase name="validResponseWithoutAnswers" classname="br.com.reboot.poc.dns.DnsMessageStructureValidatorTest" time="0.001"/>
+  <testcase name="validCompressedAnswer" classname="br.com.reboot.poc.dns.DnsMessageStructureValidatorTest" time="0.0"/>
+  <testcase name="differentLetterCaseIsAccepted" classname="br.com.reboot.poc.dns.DnsMessageStructureValidatorTest" time="0.001"/>
+  <testcase name="trailingBytesAreRejected" classname="br.com.reboot.poc.dns.DnsMessageStructureValidatorTest" time="0.0"/>
   <testcase name="selfReferencingPointerIsRejected" classname="br.com.reboot.poc.dns.DnsMessageStructureValidatorTest" time="0.0"/>
-  <testcase name="mismatchedTransactionIdIsRejected" classname="br.com.reboot.poc.dns.DnsMessageStructureValidatorTest" time="0.0"/>
+  <testcase name="mismatchedTransactionIdIsRejected" classname="br.com.reboot.poc.dns.DnsMessageStructureValidatorTest" time="0.001"/>
   <testcase name="truncatedResponseIsNotFullyValidated" classname="br.com.reboot.poc.dns.DnsMessageStructureValidatorTest" time="0.0"/>
-  <testcase name="malformedAnswerLengthIsRejected" classname="br.com.reboot.poc.dns.DnsMessageStructureValidatorTest" time="0.0"/>
+  <testcase name="malformedAnswerLengthIsRejected" classname="br.com.reboot.poc.dns.DnsMessageStructureValidatorTest" time="0.001"/>
   <testcase name="mismatchedQuestionIsRejected" classname="br.com.reboot.poc.dns.DnsMessageStructureValidatorTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
